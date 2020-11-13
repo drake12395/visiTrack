@@ -18,7 +18,15 @@ const WebcamCapture = () => {
 
   return (
     <>
-      <Container>
+      <strong>
+        Thank you for visiting our Company. This is our automated signin system
+        that will get you set up with a guest pass to wear during your time at
+        our facility. Click "Capture photo" once you are ready for your picture
+        to be taken. Feel free to take as many as you want until you see one
+        that you like. Review your guest pass on the right and click "Print
+        Guest Pass" when you are ready.
+      </strong>
+      <Container fluid>
         <Row>
           <Col>
             <Webcam
@@ -29,6 +37,7 @@ const WebcamCapture = () => {
               videoConstraints={videoConstraints}
               screenshotFormat='image/jpeg'
             />
+            <br />
             <Button variant='primary' onClick={capture}>
               Capture photo
             </Button>
@@ -43,7 +52,9 @@ const WebcamCapture = () => {
                 </Card.Text>
               </Card.Body>
             </Card>
-            <Button variant='secondary'>Print Guest Pass</Button>
+            <Button variant='secondary' onClick={() => window.print()}>
+              Print Guest Pass
+            </Button>
           </Col>
         </Row>
       </Container>
