@@ -5,6 +5,7 @@ const App = () => {
   return (
     <>
       <h1>Welcome to VisiTrack</h1>
+      <h2>This is a new line for a test push to remote repo</h2>
     </>
   );
 };
