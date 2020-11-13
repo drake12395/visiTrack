@@ -1,11 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <>
-      <h1>Welcome to VisiTrack</h1>
-      <h2>This is a new line for a test push to remote repo</h2>
+      <Header />
+      <main>
+        <Container>
+          <h1>Welcome to Visitrack</h1>
+        </Container>
+      </main>
+      <Footer />
     </>
   );
 };
