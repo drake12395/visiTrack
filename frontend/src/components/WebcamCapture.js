@@ -1,5 +1,6 @@
 import React from 'react';
 import Webcam from 'react-webcam';
+
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 
 const WebcamCapture = () => {
@@ -15,9 +16,11 @@ const WebcamCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
+  console.log(imgSrc);
 
   return (
     <>
+      <h1>Welcome to Visitrack</h1>
       <strong>
         Thank you for visiting our Company. This is our automated signin system
         that will get you set up with a guest pass to wear during your time at
@@ -44,7 +47,15 @@ const WebcamCapture = () => {
           </Col>
           <Col>
             <Card style={{ width: '18rem' }} border='secondary'>
-              <Card.Img variant='top' src={imgSrc} />
+              {imgSrc === null ? (
+                <Card.Img
+                  variant='top'
+                  src='images/default-placeholder-image.png'
+                />
+              ) : (
+                <Card.Img variant='top' src={imgSrc} />
+              )}
+
               <Card.Body>
                 <Card.Title>Guest Name</Card.Title>
                 <Card.Text>
@@ -56,6 +67,8 @@ const WebcamCapture = () => {
               Print Guest Pass
             </Button>
           </Col>
+
+          <br />
         </Row>
       </Container>
 
