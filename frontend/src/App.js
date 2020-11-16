@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import WebcamCapture from './components/WebcamCapture';
 import HostMeetings from './screens/HostMeetings';
+import CreateMeeting from './screens/CreateMeeting';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Header />
       <main className='py-4'>
         <Container>
+          <Route exact path='/createmeeting' component={CreateMeeting} />
           <Route path='/hostmeetings' component={HostMeetings} />
           <Route exact path='/' component={WebcamCapture} />
         </Container>

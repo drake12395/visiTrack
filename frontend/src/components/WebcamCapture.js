@@ -57,14 +57,15 @@ const WebcamCapture = () => {
               )}
 
               <Card.Body>
-                <Card.Title>Guest Name</Card.Title>
+                <Card.Title className='text-center'>VISITOR</Card.Title>
+                <Card.Subtitle>Guest Name</Card.Subtitle>
                 <Card.Text>
                   Guest info: Bob is here to see Bill at 1:30
                 </Card.Text>
               </Card.Body>
             </Card>
             <Button variant='secondary' onClick={() => window.print()}>
-              Print Guest Pass
+              Check In
             </Button>
           </Col>
 
