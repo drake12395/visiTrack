@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import meetings from '../meetings';
 import Meeting from '../screens/Meeting';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 const WebcamCapture = ({ match }) => {
   const meeting = meetings.find((m) => m._id === 3);
@@ -105,8 +105,16 @@ const WebcamCapture = ({ match }) => {
                 </Button>
               </Form>
             </Col>
-
-            <br />
+            <Col xs={6} md={4}>
+              {imgSrc === null ? (
+                <Image
+                  variant='top'
+                  src='images/default-placeholder-image.png'
+                />
+              ) : (
+                <Image variant='top' src={imgSrc} />
+              )}
+            </Col>
           </Row>
         </Container>
       ) : (
