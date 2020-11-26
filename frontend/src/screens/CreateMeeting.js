@@ -6,7 +6,7 @@ import FormContainer from '../components/FormContainer';
 
 const CreateMeeting = () => {
   const [startDate, setStartDate] = useState(new Date());
-  // <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+  console.log(startDate);
   return (
     <FormContainer>
       <h1>Create a meeting</h1>

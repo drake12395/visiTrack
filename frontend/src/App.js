@@ -6,6 +6,9 @@ import Footer from './components/Footer';
 import WebcamCapture from './components/WebcamCapture';
 import HostMeetings from './screens/HostMeetings';
 import CreateMeeting from './screens/CreateMeeting';
+import PassPreviewScreen from './screens/PassPreviewScreen';
+import Meeting from './screens/Meeting';
+import VisitorSignInScreen from './screens/VisitorSignInScreen';
 
 const App = () => {
   return (
@@ -13,9 +16,14 @@ const App = () => {
       <Header />
       <main className='py-4'>
         <Container>
-          <Route exact path='/createmeeting' component={CreateMeeting} />
+          <VisitorSignInScreen />
+          {/* <Route exact path='/' component={WebcamCapture} />
+          <Route path='/meeting' component={Meeting} />
+          <Route path='/createmeeting' component={CreateMeeting} />
+
           <Route path='/hostmeetings' component={HostMeetings} />
-          <Route exact path='/' component={WebcamCapture} />
+
+          <Route path='/passpreviewscreen' component={PassPreviewScreen} /> */}
         </Container>
       </main>
       <Footer />
