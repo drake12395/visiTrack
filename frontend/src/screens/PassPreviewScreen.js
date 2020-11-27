@@ -1,33 +1,37 @@
 import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 import Meeting from '../screens/Meeting';
+import moment from 'moment';
 
 const PassPreviewScreen = ({ visitor, funFact, imgSrc }) => {
+  const expiresOn = moment().add(1, 'days').calendar();
   return (
-    <Col>
-      <Card style={{ width: '18rem' }} border='secondary'>
-        {imgSrc === null ? (
-          <Card.Img variant='top' src='images/default-placeholder-image.png' />
-        ) : (
-          <Card.Img variant='top' src={imgSrc} />
-        )}
+    <>
+      <div className='pass'>
+        <div className='passTitleRow'>
+          <h1>VISITOR</h1>
+        </div>
 
-        <Card.Body>
-          <Card.Title className='text-center'>VISITOR</Card.Title>
-          <br />
-          <Card.Subtitle name='visitor' value={visitor}>
-            Name:
-            {visitor}
-          </Card.Subtitle>
-          <br />
-          <Card.Text name='funFact' value={funFact}>
-            Fun Fact: {funFact}
-          </Card.Text>
-          <Card.Text name='room'>Meeting Room: 1</Card.Text>
-        </Card.Body>
-      </Card>
-      <Meeting />
-    </Col>
+        <div className='visitorInfoRow'>
+          <div className='visitorImgCol left'>
+            {imgSrc === null ? (
+              <img
+                className='passImage'
+                src='images/default-placeholder-image.png'
+              ></img>
+            ) : (
+              <img className='passImage' src={imgSrc} />
+            )}
+          </div>
+          <div className='visitorTextCol right'>
+            {/* holds: first, last, funfact, expiration  */}
+            <h4 className='passText'>{visitor}</h4>
+            <h6 className='passText'>{funFact}</h6>
+            <p className='passText'>Expires: {expiresOn}</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

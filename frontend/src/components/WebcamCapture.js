@@ -105,12 +105,16 @@ const WebcamCapture = ({ match }) => {
                 </Button>
               </Form>
             </Col>
-            <Col xs={6} md={4}>
+            <Col>
               {imgSrc === null ? (
-                <Image
-                  variant='top'
-                  src='images/default-placeholder-image.png'
-                />
+                <div style={{ width: 380, height: 220 }}>
+                  <Image
+                    className='placeHolder'
+                    variant='top'
+                    src='images/personPlaceholder.png'
+                    // fluid
+                  />
+                </div>
               ) : (
                 <Image variant='top' src={imgSrc} />
               )}
