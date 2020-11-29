@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import WelcomeText from './WelcomeText';
 import { Link } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import { Form } from 'react-bootstrap';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import meetings from '../meetings';
 import Meeting from '../screens/Meeting';
+
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 const WebcamCapture = ({ match }) => {
-  const meeting = meetings.find((m) => m._id === 3);
-  console.log(meeting);
+  // const meeting = meetings.find((m) => m._id === 3);
+  // console.log(meeting);
   const videoConstraints = {
     width: 1280,
     height: 720,
@@ -35,24 +37,17 @@ const WebcamCapture = ({ match }) => {
     setFunFact(e.target.value);
   }
 
-  const handleSubmit = (e) => {
-    setToggle(true);
+  const handleSubmit = () => {
+    setToggle(false);
+  };
 
-    e.preventDefault();
-    // console.log(funFact);
+  const handleSubmitToPass = () => {
+    setToggle(true);
   };
 
   return (
     <>
-      <h1>Welcome to Visitrack</h1>
-      <strong>
-        Thank you for visiting our Company. This is our automated signin system
-        that will get you set up with a visitor pass to wear during your time at
-        our facility. Click "Capture photo" once you are ready for your picture
-        to be taken. Feel free to take as many as you want until you see one
-        that you like. Review your visitor pass on the right and click "Print
-        visitor Pass" when you are ready.
-      </strong>
+      <WelcomeText />
       {!toggle ? (
         <Container fluid>
           <Row>
@@ -93,16 +88,16 @@ const WebcamCapture = ({ match }) => {
                     onChange={handleFunFact}
                   ></Form.Control>
                 </Form.Group>
-                <Link to='/meeting' component={Meeting} funFact={funFact}>
-                  print pass and meeting details
-                </Link>
+
                 <Button
                   variant='secondary'
-                  type='submit'
-                  onClick={handleSubmit}
+                  type='button'
+                  onClick={handleSubmitToPass}
                 >
                   view visitor pass
                 </Button>
+
+                {/* <Link to='/passpreviewscreen'>passPrev</Link> */}
               </Form>
             </Col>
             <Col>
@@ -112,7 +107,6 @@ const WebcamCapture = ({ match }) => {
                     className='placeHolder'
                     variant='top'
                     src='images/personPlaceholder.png'
-                    // fluid
                   />
                 </div>
               ) : (
@@ -126,7 +120,15 @@ const WebcamCapture = ({ match }) => {
           visitor={visitor}
           funFact={funFact}
           imgSrc={imgSrc}
+          toggle={toggle}
         ></PassPreviewScreen>
+      )}
+      {toggle ? (
+        <Button type='button' onClick={handleSubmit}>
+          Go Back
+        </Button>
+      ) : (
+        ''
       )}
     </>
   );
