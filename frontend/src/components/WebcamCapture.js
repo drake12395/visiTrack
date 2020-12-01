@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WelcomeText from './WelcomeText';
 import PrintInstructions from './PrintInstructions';
-import { Link } from 'react-router-dom';
+
 import Webcam from 'react-webcam';
 import { Form } from 'react-bootstrap';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import Meeting from '../screens/Meeting';
-import meetings from '../meetings';
-
+import axios from 'axios';
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 
-const WebcamCapture = ({ match }) => {
-  const meeting = meetings.find((m) => m._id === 3);
-  // console.log(meeting);
+const WebcamCapture = () => {
+  const [meetings, setMeetings] = useState([]);
+
+  const [visitor, setVisitor] = useState('');
+  const [funFact, setFunFact] = useState('');
+  const [toggle, setToggle] = useState(false);
+  const [toggleMeeting, setToggleMeeting] = useState(false);
+
+  // make a request to the backend, this runs as soon as the component loads
+  // use axios instead of fetch becuase its easier and has greater functionality
+  // create a function within useEffect so async await can be used
+  useEffect(() => {
+    const fetchMeetings = async () => {
+      const { data } = await axios.get('/api/meetings');
+      setMeetings(data);
+    };
+    fetchMeetings();
+  }, []);
 
   // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
@@ -27,12 +41,6 @@ const WebcamCapture = ({ match }) => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
-
-  const [visitor, setVisitor] = useState('');
-  const [funFact, setFunFact] = useState('');
-  const [toggle, setToggle] = useState(false);
-
-  const [toggleMeeting, setToggleMeeting] = useState(false);
 
   function handleVisitor(e) {
     setVisitor(e.target.value);
@@ -133,7 +141,7 @@ const WebcamCapture = ({ match }) => {
             imgSrc={imgSrc}
             toggle={toggle}
           ></PassPreviewScreen>
-          <Meeting meeting={meeting} />
+          <Meeting meetings={meetings} visitor={visitor} />
         </div>
       )}
       {toggle ? (
