@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import WelcomeText from './WelcomeText';
+import PrintInstructions from './PrintInstructions';
 import { Link } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import { Form } from 'react-bootstrap';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
-import meetings from '../meetings';
 import Meeting from '../screens/Meeting';
+import meetings from '../meetings';
 
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 
 const WebcamCapture = ({ match }) => {
-  // const meeting = meetings.find((m) => m._id === 3);
+  const meeting = meetings.find((m) => m._id === 3);
   // console.log(meeting);
+
+  // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
     width: 1280,
     height: 720,
@@ -29,6 +32,8 @@ const WebcamCapture = ({ match }) => {
   const [funFact, setFunFact] = useState('');
   const [toggle, setToggle] = useState(false);
 
+  const [toggleMeeting, setToggleMeeting] = useState(false);
+
   function handleVisitor(e) {
     setVisitor(e.target.value);
   }
@@ -45,9 +50,14 @@ const WebcamCapture = ({ match }) => {
     setToggle(true);
   };
 
+  const handleMeeting = () => {
+    setToggleMeeting(true);
+  };
+
   return (
     <>
-      <WelcomeText />
+      {!toggle ? <WelcomeText /> : <PrintInstructions />}
+
       {!toggle ? (
         <Container fluid>
           <Row>
@@ -116,17 +126,29 @@ const WebcamCapture = ({ match }) => {
           </Row>
         </Container>
       ) : (
-        <PassPreviewScreen
-          visitor={visitor}
-          funFact={funFact}
-          imgSrc={imgSrc}
-          toggle={toggle}
-        ></PassPreviewScreen>
+        <div>
+          <PassPreviewScreen
+            visitor={visitor}
+            funFact={funFact}
+            imgSrc={imgSrc}
+            toggle={toggle}
+          ></PassPreviewScreen>
+          <Meeting meeting={meeting} />
+        </div>
       )}
       {toggle ? (
-        <Button type='button' onClick={handleSubmit}>
-          Go Back
-        </Button>
+        <div className='d-flex justify-content-center'>
+          <Button type='button' onClick={handleSubmit} className='m-3'>
+            Go Back
+          </Button>
+
+          <Button type='button' onClick={handleSubmit} className='m-3'>
+            Print
+          </Button>
+          <Button type='button' onClick={handleMeeting} className='m-3'>
+            Meeting Details
+          </Button>
+        </div>
       ) : (
         ''
       )}

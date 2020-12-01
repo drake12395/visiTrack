@@ -1,20 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { Col, Row, Button, Container } from 'react-bootstrap';
-import Meeting from '../screens/Meeting';
+import { Container } from 'react-bootstrap';
 import moment from 'moment';
+import Meeting from './Meeting';
 
-const PassPreviewScreen = ({ visitor, funFact, imgSrc, toggle }) => {
+const PassPreviewScreen = ({ visitor, funFact, imgSrc }) => {
   const expiresOn = moment().format('LL');
-  let history = useHistory();
-  // console.log(toggle);
-  // console.log(visitor);
-
-  // const handleClick = () => {
-  //   toggle = false;
-  //   console.log(toggle);
-  // };
 
   return (
     <>
@@ -37,7 +27,6 @@ const PassPreviewScreen = ({ visitor, funFact, imgSrc, toggle }) => {
               )}
             </div>
             <div className='visitorTextCol right'>
-              {/* holds: first, last, funfact, expiration  */}
               <h4 className='passText'>{visitor}</h4>
               <h6 className='passText'>{funFact}</h6>
               <p className='passText'>Expires: {expiresOn}</p>
@@ -45,17 +34,18 @@ const PassPreviewScreen = ({ visitor, funFact, imgSrc, toggle }) => {
           </div>
         </div>
         <br />
-        <Row className='justify-content-md-center'>
+
+        {/* <Row className='justify-content-md-center'>
           <Col md='auto'>
-            {/* <Link className='btn btn-primary my-3' to='/'>
+            <Link className='btn btn-primary my-3' to='/'>
               Go Back
-            </Link> */}
-            {/* <Button onClick={handleClick}>Go Back</Button> */}
+            </Link>
+            <Button onClick={handleClick}>Go Back</Button>
           </Col>
           <Col md='auto'>
             <Button>Print</Button>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </>
   );

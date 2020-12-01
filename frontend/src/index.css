@@ -62,3 +62,11 @@ strong {
 .passText {
   padding: 10px;
 }
+
+h6 {
+  line-height: 1.4;
+}
+
+.HeaderText {
+  margin-bottom: 4vh;
+}
