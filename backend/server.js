@@ -1,5 +1,8 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const meetings = require('./data/meetings');
+
+dotenv.config();
 
 const app = express();
 
