@@ -37,4 +37,4 @@ const meetings = [
   },
 ];
 
-module.exports = meetings;
+export default meetings;
