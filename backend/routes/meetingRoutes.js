@@ -5,7 +5,6 @@ import Meeting from '../models/meetingModel.js';
 
 // request all meetings
 // GET /api/meetings
-
 router.get(
   '/',
   asyncHandler(async (req, res) => {
@@ -24,7 +23,9 @@ router.get(
     if (meeting) {
       res.json(meeting);
     } else {
-      res.status(404).json({ message: 'Meeting not found' });
+      //thrown for a formatted meeting id that doesnt exist in the db
+      res.status(404);
+      throw new Error('Product not found');
     }
   })
 );
