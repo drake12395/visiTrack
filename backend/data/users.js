@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-
+// rvw user schema make sure it matches, the chen meeting (problme is probably in meeting)
 const users = [
   {
     name: 'Host User',
@@ -9,12 +9,12 @@ const users = [
   },
   {
     name: 'John Doe',
-    email: 'host@example.com',
+    email: 'john@example.com',
     password: bcrypt.hashSync('123456', 10),
   },
   {
     name: 'Jane Doe',
-    email: 'host@example.com',
+    email: 'jane@example.com',
     password: bcrypt.hashSync('123456', 10),
   },
 ];

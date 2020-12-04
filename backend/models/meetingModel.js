@@ -2,20 +2,22 @@ import mongoose from 'mongoose';
 
 const meetingSchema = mongoose.Schema(
   {
-    // might need an array here to handle visitor and host, reference lesson 19 at minute 10 for this
-    visitor: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
     },
+    visitor: {
+      type: String,
+      required: true,
+    },
     host: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
       ref: 'User',
     },
     meetDayTime: {
       type: Date,
-      required: true,
     },
     location: {
       type: String,
