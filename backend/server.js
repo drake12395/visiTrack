@@ -4,18 +4,24 @@ import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import colors from 'colors';
 import meetingRoutes from './routes/meetingRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
 connectDB();
 
 const app = express();
+
+//allows us to accept json data in the body
+app.use(express.json());
+
 //routes
 app.get('/', (req, res) => {
   res.send('API is running....');
 });
 
 app.use('/api/meetings', meetingRoutes);
+app.use('/api/users', userRoutes);
 
 // error middleware - error displayed for invalid url
 app.use(notFound);
