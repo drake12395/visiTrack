@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import WebcamCapture from './components/WebcamCapture';
 import Meeting from './screens/Meeting';
 import PassPreviewScreen from './screens/PassPreviewScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           {/* <VisitorSignInScreen /> */}
           <Route exact path='/' component={WebcamCapture} />
           <Route path='/meeting/:id' component={Meeting} />
+          <Route path='/login' component={LoginScreen} />
           {/* <Route path='/createmeeting' component={CreateMeeting} />
 
           <Route path='/hostmeetings' component={HostMeetings} /> */}

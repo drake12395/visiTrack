@@ -1,9 +1,11 @@
 import axios from 'axios';
 import {
+  USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
 } from '../constants/userConstants';
 
+// action to be called when user attempts login (takes email and password)
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -16,6 +18,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
 
+    // makes request handled by axios
     const { data } = await axios.post(
       '/api/users/login',
       { email, password },
