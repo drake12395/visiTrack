@@ -7,6 +7,7 @@ import WebcamCapture from './components/WebcamCapture';
 import Meeting from './screens/Meeting';
 import PassPreviewScreen from './screens/PassPreviewScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/' component={WebcamCapture} />
           <Route path='/meeting/:id' component={Meeting} />
           <Route path='/login' component={LoginScreen} />
+          <Route path='/register' component={RegisterScreen} />
           {/* <Route path='/createmeeting' component={CreateMeeting} />
 
           <Route path='/hostmeetings' component={HostMeetings} /> */}
