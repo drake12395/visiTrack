@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeText from './WelcomeText';
+import { Link } from 'react-router-dom';
 import PrintInstructions from './PrintInstructions';
-
+import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
-import { Form } from 'react-bootstrap';
+import { logout } from '../actions/userActions';
+
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import Meeting from '../screens/Meeting';
 import axios from 'axios';
-import { Button, Container, Row, Col, Image } from 'react-bootstrap';
+import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
 
-const WebcamCapture = () => {
+const WebcamCapture = ({ location }) => {
+  const dispatch = useDispatch();
   const [meetings, setMeetings] = useState([]);
 
   const [visitor, setVisitor] = useState('');
@@ -17,16 +20,28 @@ const WebcamCapture = () => {
   const [toggle, setToggle] = useState(false);
   const [toggleMeeting, setToggleMeeting] = useState(false);
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  // if the url query string exists, split as neccessary
+  const redirect = location.search ? location.search.split('=')[1] : '/';
+
   // make a request to the backend, this runs as soon as the component loads
-  // use axios instead of fetch becuase its easier and has greater functionality
+  // use axios instead of fetch
   // create a function within useEffect so async await can be used
   useEffect(() => {
+    console.log('pageloaded!!');
+    console.log(userInfo);
     const fetchMeetings = async () => {
       const { data } = await axios.get('/api/meetings');
       setMeetings(data);
     };
     fetchMeetings();
   }, []);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
@@ -83,23 +98,7 @@ const WebcamCapture = () => {
                 Capture photo
               </Button>
               <Form className='guestSignIn' onSubmit={handleSubmit}>
-                <Form.Group controlId='guestName'>
-                  <Form.Label>
-                    Full Name<span style={{ color: 'red' }}>*</span>
-                  </Form.Label>
-                  <Form.Control
-                    type='text'
-                    // name='visitor'
-                    // value={visitor}
-                    onChange={handleVisitor}
-                    placeholder='Please provide your first and last name.'
-                  ></Form.Control>
-                </Form.Group>
-
                 <Form.Group controlId='funFact'>
-                  <Form.Label>
-                    Fun Fact<span style={{ color: 'red' }}>*</span>
-                  </Form.Label>
                   <Form.Control
                     type='text'
                     placeholder='Tell us a fun fact about yourself.'
@@ -114,8 +113,6 @@ const WebcamCapture = () => {
                 >
                   view visitor pass
                 </Button>
-
-                {/* <Link to='/passpreviewscreen'>passPrev</Link> */}
               </Form>
             </Col>
             <Col>
@@ -136,12 +133,11 @@ const WebcamCapture = () => {
       ) : (
         <div>
           <PassPreviewScreen
-            visitor={visitor}
             funFact={funFact}
             imgSrc={imgSrc}
             toggle={toggle}
           ></PassPreviewScreen>
-          <Meeting meetings={meetings} visitor={visitor} />
+          {/* <Meeting userInfo={userInfo} /> */}
         </div>
       )}
       {toggle ? (
@@ -150,12 +146,16 @@ const WebcamCapture = () => {
             Go Back
           </Button>
 
-          <Button type='button' onClick={handleSubmit} className='m-3'>
+          <Button type='button' onClick={() => window.print()} className='m-3'>
             Print
           </Button>
-          <Button type='button' onClick={handleMeeting} className='m-3'>
-            Meeting Details
-          </Button>
+          <Link
+            onClick={logoutHandler}
+            className='btn btn-secondary m-3'
+            to={redirect ? `/login?redirect=${redirect}` : '/login'}
+          >
+            Notify Host
+          </Link>
         </div>
       ) : (
         ''

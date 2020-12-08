@@ -8,6 +8,7 @@ import Meeting from './screens/Meeting';
 import PassPreviewScreen from './screens/PassPreviewScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import HostMeetings from './screens/HostMeetings';
 
 const App = () => {
   return (
@@ -20,9 +21,9 @@ const App = () => {
           <Route path='/meeting/:id' component={Meeting} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
-          {/* <Route path='/createmeeting' component={CreateMeeting} />
+          {/* <Route path='/createmeeting' component={CreateMeeting} />*/}
 
-          <Route path='/hostmeetings' component={HostMeetings} /> */}
+          <Route path='/hostmeetings' component={HostMeetings} />
 
           {/* <Route
             path='/passpreviewscreen'
