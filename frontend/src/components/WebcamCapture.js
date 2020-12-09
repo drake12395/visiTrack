@@ -5,9 +5,7 @@ import PrintInstructions from './PrintInstructions';
 import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
 import { logout } from '../actions/userActions';
-
 import PassPreviewScreen from '../screens/PassPreviewScreen';
-import Meeting from '../screens/Meeting';
 import axios from 'axios';
 import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
 
@@ -15,7 +13,6 @@ const WebcamCapture = ({ location }) => {
   const dispatch = useDispatch();
   const [meetings, setMeetings] = useState([]);
 
-  const [visitor, setVisitor] = useState('');
   const [funFact, setFunFact] = useState('');
   const [toggle, setToggle] = useState(false);
   const [toggleMeeting, setToggleMeeting] = useState(false);
@@ -37,7 +34,7 @@ const WebcamCapture = ({ location }) => {
       setMeetings(data);
     };
     fetchMeetings();
-  }, []);
+  }, [userInfo]);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -57,10 +54,6 @@ const WebcamCapture = ({ location }) => {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
-  function handleVisitor(e) {
-    setVisitor(e.target.value);
-  }
-
   function handleFunFact(e) {
     setFunFact(e.target.value);
   }
@@ -71,10 +64,6 @@ const WebcamCapture = ({ location }) => {
 
   const handleSubmitToPass = () => {
     setToggle(true);
-  };
-
-  const handleMeeting = () => {
-    setToggleMeeting(true);
   };
 
   return (
@@ -137,7 +126,6 @@ const WebcamCapture = ({ location }) => {
             imgSrc={imgSrc}
             toggle={toggle}
           ></PassPreviewScreen>
-          {/* <Meeting userInfo={userInfo} /> */}
         </div>
       )}
       {toggle ? (

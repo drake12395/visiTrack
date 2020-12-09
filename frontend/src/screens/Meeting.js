@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, ListGroup } from 'react-bootstrap';
 import { listMeetings } from '../actions/meetingActions';
 
 const Meeting = ({ userInfo }) => {
-  // const visitorName = visitor.toLowerCase().trim();
   const dispatch = useDispatch();
 
   const meetingList = useSelector((state) => state.meetingList);
@@ -16,11 +15,6 @@ const Meeting = ({ userInfo }) => {
 
   console.log(meetings);
   console.log(userInfo.name);
-
-  // const meeting = meetings.find(
-  //   (m) => m.visitor.toLowerCase().trim() === userInfo.name.toLowerCase().trim()
-  // );
-  // console.log(meeting);
 
   return (
     <>
