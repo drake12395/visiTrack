@@ -17,7 +17,7 @@ const meetingSchema = mongoose.Schema(
       ref: 'User',
     },
     meetDayTime: {
-      type: String,
+      type: Date,
     },
     meetingRoom: {
       type: String,

@@ -63,11 +63,7 @@ export const meetingUpdateReducer = (state = { meeting: {} }, action) => {
   }
 };
 
-export const meetingtDetailsReducer = (
-  // may need to update meeting object on next line
-  state = { meeting: {} },
-  action
-) => {
+export const meetingtDetailsReducer = (state = { meeting: {} }, action) => {
   switch (action.type) {
     case MEETING_DETAILS_REQUEST:
       return { ...state, loading: true };

@@ -99,7 +99,7 @@ const MeetingEditScreen = ({ match, history }) => {
             <Form.Group controlId='meetDayTime'>
               <Form.Label>Day / Time</Form.Label>
               <Form.Control
-                type='text'
+                type='Date'
                 value={meetDayTime}
                 onChange={(e) => setDayTime(e.target.value)}
               ></Form.Control>
@@ -118,6 +118,8 @@ const MeetingEditScreen = ({ match, history }) => {
             <Form.Group controlId='description'>
               <Form.Label>Description</Form.Label>
               <Form.Control
+                as='textarea'
+                rows={4}
                 type='text'
                 placeholder='Enter meeting details'
                 value={description}

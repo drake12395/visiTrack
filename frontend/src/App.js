@@ -22,7 +22,6 @@ const App = () => {
           <Route path='/meeting/:id' component={Meeting} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
-          {/* <Route path='/createmeeting' component={CreateMeeting} />*/}
 
           <Route path='/hostmeetings' component={HostMeetings} />
           <Route path='/host/meeting/:id/edit' component={MeetingEditScreen} />

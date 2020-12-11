@@ -30,7 +30,7 @@ const createMeeting = asyncHandler(async (req, res) => {
     user: req.user._id,
     host: 'Sample name',
     visitor: 'Sample visitor',
-    meetDayTime: 'new sample day',
+    meetDayTime: new Date(),
     meetingRoom: 'sample location',
     description: 'Sample description',
   });
