@@ -9,19 +9,19 @@ const meetingSchema = mongoose.Schema(
     },
     visitor: {
       type: String,
-      required: true,
+      required: false,
     },
     host: {
       type: String,
-      required: true,
+      required: false,
       ref: 'User',
     },
     meetDayTime: {
-      type: Date,
-    },
-    location: {
       type: String,
-      required: true,
+    },
+    meetingRoom: {
+      type: String,
+      required: false,
     },
     description: {
       type: String,
