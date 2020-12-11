@@ -13,6 +13,7 @@ import {
 import { protect, host } from '../middleware/authMiddleware.js';
 
 router.route('/').get(getMeetings).post(protect, host, createMeeting);
+router.route('/hostmeetings').get(protect, host, getMeetings);
 
 // router.put(protect, host, updateMeeting);
 router
