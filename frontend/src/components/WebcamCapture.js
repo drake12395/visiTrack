@@ -6,34 +6,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
 import { logout } from '../actions/userActions';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
-import axios from 'axios';
+import { listMeetings } from '../actions/meetingActions';
+
 import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
 
 const WebcamCapture = ({ location }) => {
   const dispatch = useDispatch();
-  const [meetings, setMeetings] = useState([]);
 
   const [funFact, setFunFact] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [toggleMeeting, setToggleMeeting] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  // const { loading, error, userInfo } = userLogin;
 
   // if the url query string exists, split as neccessary
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
-  // make a request to the backend, this runs as soon as the component loads
-  // use axios instead of fetch
-  // create a function within useEffect so async await can be used
   useEffect(() => {
-    console.log(userInfo);
-    const fetchMeetings = async () => {
-      const { data } = await axios.get('/api/meetings');
-      setMeetings(data);
-    };
-    fetchMeetings();
-  }, [userInfo]);
+    dispatch(listMeetings());
+  }, [dispatch]);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -105,9 +96,12 @@ const WebcamCapture = ({ location }) => {
             </Col>
             <Col>
               {imgSrc === null ? (
-                <div style={{ width: 380, height: 220 }}>
+                <div
+                  className='placeHolder '
+                  style={{ width: 380, height: 220 }}
+                >
                   <Image
-                    className='placeHolder'
+                    className='placeHolder '
                     variant='top'
                     src='images/personPlaceholder.png'
                   />

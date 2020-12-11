@@ -13,9 +13,6 @@ const Meeting = ({ userInfo }) => {
     dispatch(listMeetings());
   }, [dispatch]);
 
-  console.log(meetings);
-  console.log(userInfo.name);
-
   return (
     <>
       {meetings.map((meeting) =>
@@ -28,7 +25,7 @@ const Meeting = ({ userInfo }) => {
               <ListGroup.Item>Host Name: {meeting.host}</ListGroup.Item>
               <ListGroup.Item>Date: {meeting.meetDayTime}</ListGroup.Item>
 
-              <ListGroup.Item>Location: {meeting.location}</ListGroup.Item>
+              <ListGroup.Item>Location: {meeting.meetingRoom}</ListGroup.Item>
             </ListGroup>
           </Card>
         ) : (
@@ -36,8 +33,6 @@ const Meeting = ({ userInfo }) => {
         )
       )}
     </>
-
-    // <div>blahs</div>
   );
 };
 

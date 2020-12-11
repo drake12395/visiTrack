@@ -7,6 +7,8 @@ import {
   deleteMeeting,
   createMeeting,
 } from '../actions/meetingActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 import { MEETING_CREATE_RESET } from '../constants/meetingConstants';
 
 const HostMeetings = ({ history, match }) => {
@@ -77,6 +79,10 @@ const HostMeetings = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
       <Table striped bordered hover responsive>
         <thead>
           <tr>

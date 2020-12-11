@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
@@ -22,7 +21,6 @@ const MeetingEditScreen = ({ match, history }) => {
 
   const meetingDetails = useSelector((state) => state.meetingDetails);
   const { loading, error, meeting } = meetingDetails;
-  console.log(meeting);
 
   const meetingUpdate = useSelector((state) => state.meetingUpdate);
   const {
