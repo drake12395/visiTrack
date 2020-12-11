@@ -27,7 +27,6 @@ const WebcamCapture = ({ location }) => {
   // use axios instead of fetch
   // create a function within useEffect so async await can be used
   useEffect(() => {
-    console.log('pageloaded!!');
     console.log(userInfo);
     const fetchMeetings = async () => {
       const { data } = await axios.get('/api/meetings');

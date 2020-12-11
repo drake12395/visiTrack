@@ -142,7 +142,7 @@ export const createMeeting = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(userInfo.token);
+    // PICK UP HERE (BELOW) - looks like route is not found (hitting  404)
 
     const { data } = await axios.post(`/api/meetings`, {}, config);
 

@@ -31,4 +31,13 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { protect };
+const host = (req, res, next) => {
+  if (req.user && req.user.isHost) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Not authorized as an host');
+  }
+};
+
+export { protect, host };

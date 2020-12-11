@@ -7,16 +7,52 @@ import {
   deleteMeeting,
   createMeeting,
 } from '../actions/meetingActions';
+import { MEETING_CREATE_RESET } from '../constants/meetingConstants';
 
-const HostMeetings = () => {
+const HostMeetings = ({ history, match }) => {
   const dispatch = useDispatch();
 
   const meetingList = useSelector((state) => state.meetingList);
   const { meetings } = meetingList;
 
+  const meetingDelete = useSelector((state) => state.meetingDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = meetingDelete;
+
+  const meetingCreate = useSelector((state) => state.meetingCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    meeting: createdMeeting,
+  } = meetingCreate;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    dispatch(listMeetings());
-  }, [dispatch]);
+    dispatch({ type: MEETING_CREATE_RESET });
+
+    if (!userInfo || !userInfo.isHost) {
+      history.push('/login');
+    }
+
+    if (successCreate) {
+      history.push(`/host/meeting/${createdMeeting._id}/edit`);
+    } else {
+      dispatch(listMeetings());
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successCreate,
+    successDelete,
+    createdMeeting,
+  ]);
 
   // TODO - create deleteMeeting to be dispatched
   const deleteHandler = (id) => {
@@ -57,9 +93,9 @@ const HostMeetings = () => {
             <tr key={meeting._id}>
               <td>{meeting._id}</td>
               <td>{meeting.meetDayTime}</td>
-              <td>{meeting.location}</td>
+              <td>{meeting.meetingRoom}</td>
               <td>{meeting.visitor}</td>
-              <td></td>
+              <td>{meeting.description}</td>
               <td>
                 <LinkContainer to={`/host/meeting/${meeting._id}/edit`}>
                   <Button variant='light' className='btn-sm'>

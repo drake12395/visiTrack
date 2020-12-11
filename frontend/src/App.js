@@ -26,13 +26,6 @@ const App = () => {
 
           <Route path='/hostmeetings' component={HostMeetings} />
           <Route path='/host/meeting/:id/edit' component={MeetingEditScreen} />
-
-          {/* <Route
-            path='/passpreviewscreen'
-            render={(props) => (
-              <PassPreviewScreen {...props} title={`Props through render`} />
-            )}
-          /> */}
         </Container>
       </main>
       <Footer />

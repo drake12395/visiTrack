@@ -12,15 +12,17 @@ import { MEETING_UPDATE_RESET } from '../constants/meetingConstants';
 const MeetingEditScreen = ({ match, history }) => {
   const meetingId = match.params.id;
 
-  const [visitorName, setVisitorName] = useState('');
-  const [dayTime, setDayTime] = useState('');
-  const [meetingLocation, setMeetingLocation] = useState('');
+  const [visitor, setVisitorName] = useState('');
+  const [host, setHostName] = useState('');
+  const [meetDayTime, setDayTime] = useState('');
+  const [meetingRoom, setMeetingRoom] = useState('');
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
 
   const meetingDetails = useSelector((state) => state.meetingDetails);
   const { loading, error, meeting } = meetingDetails;
+  console.log(meeting);
 
   const meetingUpdate = useSelector((state) => state.meetingUpdate);
   const {
@@ -38,8 +40,9 @@ const MeetingEditScreen = ({ match, history }) => {
         dispatch(listMeetingDetails(meetingId));
       } else {
         setVisitorName(meeting.visitor);
+        setHostName(meeting.host);
         setDayTime(meeting.meetDayTime);
-        setMeetingLocation(meeting.location);
+        setMeetingRoom(meeting.meetingRoom);
         setDescription(meeting.description);
       }
     }
@@ -50,9 +53,10 @@ const MeetingEditScreen = ({ match, history }) => {
     dispatch(
       updateMeeting({
         _id: meetingId,
-        visitorName,
-        dayTime,
-        meetingLocation,
+        visitor,
+        host,
+        meetDayTime,
+        meetingRoom,
         description,
       })
     );
@@ -60,7 +64,7 @@ const MeetingEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to='/hostmeeting' className='btn btn-light my-3'>
+      <Link to='/hostmeetings' className='btn btn-light my-3'>
         Go Back
       </Link>
 
@@ -74,33 +78,42 @@ const MeetingEditScreen = ({ match, history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
-            <Form.Group controlId='visitorName'>
+            <Form.Group controlId='host'>
+              <Form.Label>Host</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter host name'
+                value={host}
+                onChange={(e) => setHostName(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='visitor'>
               <Form.Label>Visitor</Form.Label>
               <Form.Control
-                type='visitorName'
+                type='text'
                 placeholder='Enter visitor name'
-                value={visitorName}
+                value={visitor}
                 onChange={(e) => setVisitorName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='dayTime'>
+            <Form.Group controlId='meetDayTime'>
               <Form.Label>Day / Time</Form.Label>
               <Form.Control
                 type='text'
-                placeholder='select a date'
-                value={dayTime}
+                value={meetDayTime}
                 onChange={(e) => setDayTime(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='meetingLocation'>
+            <Form.Group controlId='meetingRoom'>
               <Form.Label>Location</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter location of meeting'
-                value={meetingLocation}
-                onChange={(e) => setMeetingLocation(e.target.value)}
+                value={meetingRoom}
+                onChange={(e) => setMeetingRoom(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
