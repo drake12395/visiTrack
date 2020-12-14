@@ -15,6 +15,7 @@ const LoginScreen = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
+  console.log(userInfo);
 
   // if the url query string exists, split as neccessary
   const redirect = location.search ? location.search.split('=')[1] : '/';

@@ -39,4 +39,13 @@ const host = (req, res, next) => {
   }
 };
 
-export { protect, host };
+const visitor = (req, res, next) => {
+  if (req.user && !req.user.isHost) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Not authorized as a visitor');
+  }
+};
+
+export { protect, host, visitor };

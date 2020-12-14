@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -17,14 +17,19 @@ const App = () => {
       <Header />
       <main className='py-4'>
         <Container>
-          {/* <VisitorSignInScreen /> */}
-          <Route exact path='/' component={WebcamCapture} />
-          <Route path='/meeting/:id' component={Meeting} />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
+          <Switch>
+            <Route exact path='/login' component={LoginScreen} />
+            <Route exact path='/' component={WebcamCapture} />
+            <Route path='/meeting/:id' component={Meeting} />
 
-          <Route path='/hostmeetings' component={HostMeetings} />
-          <Route path='/host/meeting/:id/edit' component={MeetingEditScreen} />
+            <Route path='/register' component={RegisterScreen} />
+
+            <Route path='/hostmeetings' component={HostMeetings} />
+            <Route
+              path='/host/meeting/:id/edit'
+              component={MeetingEditScreen}
+            />
+          </Switch>
         </Container>
       </main>
       <Footer />

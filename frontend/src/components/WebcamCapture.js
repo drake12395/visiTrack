@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeText from './WelcomeText';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PrintInstructions from './PrintInstructions';
 import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
@@ -17,9 +17,9 @@ const WebcamCapture = ({ location }) => {
   const [toggle, setToggle] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  // const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
 
-  // if the url query string exists, split as neccessary
+  // if the url query string exists, split
   const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const WebcamCapture = ({ location }) => {
 
   return (
     <>
+      {userInfo && userInfo.isHost && <Redirect to='/hostmeetings' />}
       {!toggle ? <WelcomeText /> : <PrintInstructions />}
 
       {!toggle ? (
