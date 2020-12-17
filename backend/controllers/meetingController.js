@@ -31,6 +31,7 @@ const createMeeting = asyncHandler(async (req, res) => {
     host: 'Sample name',
     visitor: 'Sample visitor',
     meetDayTime: new Date(),
+    meetingTime: '',
     meetingRoom: 'sample location',
     description: 'Sample description',
   });
@@ -43,7 +44,14 @@ const createMeeting = asyncHandler(async (req, res) => {
 // @route   PUT /api/meeting/:id
 // @access  Private/host
 const updateMeeting = asyncHandler(async (req, res) => {
-  const { host, visitor, meetDayTime, meetingRoom, description } = req.body;
+  const {
+    host,
+    visitor,
+    meetDayTime,
+    meetingTime,
+    meetingRoom,
+    description,
+  } = req.body;
 
   const meeting = await Meeting.findById(req.params.id);
 
@@ -53,6 +61,7 @@ const updateMeeting = asyncHandler(async (req, res) => {
     meeting.description = description;
 
     meeting.meetDayTime = meetDayTime;
+    meeting.meetingTime = meetingTime;
     meeting.meetingRoom = meetingRoom;
 
     const updatedMeeting = await meeting.save();
@@ -78,10 +87,28 @@ const deleteMeeting = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    notify host
+// @route   GET /api/meetings/:id/notify
+// @access  Private/visitor
+const notifyHost = asyncHandler(async (req, res) => {
+  const meeting = await Meeting.findById(req.params.id);
+
+  if (meeting) {
+    meeting.isReady = true;
+
+    const updatedMeeting = await meeting.save();
+    res.json(updatedMeeting);
+  } else {
+    res.status(404);
+    throw new Error('Meeting not found');
+  }
+});
+
 export {
   getMeetings,
   getMeetingById,
   createMeeting,
   deleteMeeting,
   updateMeeting,
+  notifyHost,
 };

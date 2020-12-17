@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeText from './WelcomeText';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PrintInstructions from './PrintInstructions';
 import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
-import { logout } from '../actions/userActions';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import { listMeetings } from '../actions/meetingActions';
 
 import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
+import { MEETING_NOTIFY_RESET } from '../constants/meetingConstants';
 
 const WebcamCapture = ({ location }) => {
   const dispatch = useDispatch();
@@ -19,16 +19,22 @@ const WebcamCapture = ({ location }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  // const meetingDetails = useSelector((state) => state.meetingDetails);
+  // const { meeting } = meetingDetails;
+
+  const notifyHost = useSelector((state) => state.notifyHost);
+  const { success: successNotify } = notifyHost;
+
   // if the url query string exists, split
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  // const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
-    dispatch(listMeetings());
-  }, [dispatch]);
+    if (successNotify) {
+      dispatch({ MEETING_NOTIFY_RESET });
+    }
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
+    dispatch(listMeetings());
+  }, [dispatch, successNotify]);
 
   // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
@@ -55,6 +61,10 @@ const WebcamCapture = ({ location }) => {
   const handleSubmitToPass = () => {
     setToggle(true);
   };
+
+  // const notifyHostHandler = () => {
+  //   dispatch(meetingNotification(meeting));
+  // };
 
   return (
     <>
@@ -131,13 +141,9 @@ const WebcamCapture = ({ location }) => {
           <Button type='button' onClick={() => window.print()} className='m-3'>
             Print
           </Button>
-          <Link
-            onClick={logoutHandler}
-            className='btn btn-secondary m-3'
-            to={redirect ? `/login?redirect=${redirect}` : '/login'}
-          >
-            Notify Host
-          </Link>
+          {/* <Button type='button' onClick={notifyHostHandler} className='m-3'>
+            notify host
+          </Button> */}
         </div>
       ) : (
         ''

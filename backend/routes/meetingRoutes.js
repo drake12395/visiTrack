@@ -9,11 +9,13 @@ import {
   createMeeting,
   deleteMeeting,
   updateMeeting,
+  notifyHost,
 } from '../controllers/meetingController.js';
 import { protect, host } from '../middleware/authMiddleware.js';
 
 router.route('/').get(getMeetings).post(protect, host, createMeeting);
 router.route('/hostmeetings').get(protect, host, getMeetings);
+router.route('/:id/notify').put(notifyHost);
 
 // router.put(protect, host, updateMeeting);
 router

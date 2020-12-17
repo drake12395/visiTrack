@@ -8,6 +8,7 @@ import {
   meetingUpdateReducer,
   meetingtDetailsReducer,
   meetingCreateReducer,
+  notifyHostReducer,
 } from './reducers/meetingReducers';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   meetingUpdate: meetingUpdateReducer,
   meetingDetails: meetingtDetailsReducer,
   meetingCreate: meetingCreateReducer,
+  notifyHost: notifyHostReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
 });

@@ -31,6 +31,8 @@ const RegisterScreen = ({ location, history }) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage('Passwords do not match');
+    } else if (password.length < 6) {
+      setMessage('Password must include at least six characters');
     } else {
       dispatch(register(name, email, password));
     }

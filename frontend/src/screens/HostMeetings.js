@@ -11,7 +11,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { MEETING_CREATE_RESET } from '../constants/meetingConstants';
 
-const HostMeetings = ({ history, match }) => {
+const HostMeetings = ({ history }) => {
   const dispatch = useDispatch();
 
   const meetingList = useSelector((state) => state.meetingList);
@@ -87,37 +87,46 @@ const HostMeetings = ({ history, match }) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Day / Time</th>
-            <th>Location</th>
+            <th>yyyy-mm-dd</th>
+            <th>Time</th>
             <th>VISITOR</th>
             <th>Description</th>
             <th>Edit / Delete</th>
           </tr>
         </thead>
         <tbody>
-          {meetings.map((meeting) => (
-            <tr key={meeting._id}>
-              <td>{meeting._id}</td>
-              <td>{meeting.meetDayTime}</td>
-              <td>{meeting.meetingRoom}</td>
-              <td>{meeting.visitor}</td>
-              <td>{meeting.description}</td>
-              <td>
-                <LinkContainer to={`/host/meeting/${meeting._id}/edit`}>
-                  <Button variant='light' className='btn-sm'>
-                    <i className='fas fa-edit'></i>
-                  </Button>
-                </LinkContainer>
-                <Button
-                  variant='danger'
-                  className='btn-sm'
-                  onClick={() => deleteHandler(meeting._id)}
-                >
-                  <i className='fas fa-trash'></i>
-                </Button>
-              </td>
-            </tr>
-          ))}
+          {meetings.map(
+            (meeting) =>
+              meeting.host.toLowerCase().trim() ===
+                userInfo.name.toLowerCase().trim() && (
+                <tr key={meeting._id}>
+                  <td>{meeting._id}</td>
+                  <td>{meeting.meetDayTime.substring(0, 10)}</td>
+                  <td>{meeting.meetingTime}</td>
+                  <td>{meeting.visitor}</td>
+                  <td>{meeting.description}</td>
+                  <td>
+                    <LinkContainer to={`/host/meeting/${meeting._id}/edit`}>
+                      <Button variant='light' className='btn-sm'>
+                        <i className='fas fa-edit'></i>
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant='danger'
+                      className='btn-sm'
+                      onClick={() => deleteHandler(meeting._id)}
+                    >
+                      <i className='fas fa-trash'></i>
+                    </Button>
+                    {/* {meeting.isReady && (
+                      <Message variant='success'>
+                        your visitor has arrived
+                      </Message>
+                    )} */}
+                  </td>
+                </tr>
+              )
+          )}
         </tbody>
       </Table>
     </>

@@ -14,7 +14,8 @@ const MeetingEditScreen = ({ match, history }) => {
   const [visitor, setVisitorName] = useState('');
   const [host, setHostName] = useState('');
   const [meetDayTime, setDayTime] = useState('');
-  const [meetingRoom, setMeetingRoom] = useState('');
+  const [meetingTime, setMeetingTime] = useState('');
+  // const [meetingRoom, setMeetingRoom] = useState('');
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();
@@ -40,7 +41,8 @@ const MeetingEditScreen = ({ match, history }) => {
         setVisitorName(meeting.visitor);
         setHostName(meeting.host);
         setDayTime(meeting.meetDayTime);
-        setMeetingRoom(meeting.meetingRoom);
+        setMeetingTime(meeting.meetingTime);
+
         setDescription(meeting.description);
       }
     }
@@ -54,7 +56,7 @@ const MeetingEditScreen = ({ match, history }) => {
         visitor,
         host,
         meetDayTime,
-        meetingRoom,
+        meetingTime,
         description,
       })
     );
@@ -97,7 +99,7 @@ const MeetingEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='meetDayTime'>
-              <Form.Label>Day / Time</Form.Label>
+              <Form.Label>Day </Form.Label>
               <Form.Control
                 type='Date'
                 value={meetDayTime}
@@ -105,14 +107,24 @@ const MeetingEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='meetingRoom'>
-              <Form.Label>Location</Form.Label>
+            <Form.Group controlId='meetingTime'>
+              <Form.Label> Time </Form.Label>
               <Form.Control
+                as='select'
                 type='text'
-                placeholder='Enter location of meeting'
-                value={meetingRoom}
-                onChange={(e) => setMeetingRoom(e.target.value)}
-              ></Form.Control>
+                value={meetingTime}
+                onChange={(e) => setMeetingTime(e.target.value)}
+              >
+                <option>8:00 a.m.</option>
+                <option>9:00 a.m.</option>
+                <option>10:00 a.m.</option>
+                <option>11:00 a.m.</option>
+                <option>noon</option>
+                <option>1:00 p.m.</option>
+                <option>2:00 p.m.</option>
+                <option>3:00 p.m.</option>
+                <option>4:00 p.m.</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId='description'>

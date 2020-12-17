@@ -19,6 +19,10 @@ const meetingSchema = mongoose.Schema(
     meetDayTime: {
       type: Date,
     },
+    meetingTime: {
+      type: String,
+      required: false,
+    },
     meetingRoom: {
       type: String,
       required: false,
@@ -26,6 +30,10 @@ const meetingSchema = mongoose.Schema(
     description: {
       type: String,
       required: true,
+    },
+    isReady: {
+      type: Boolean,
+      default: false,
     },
   },
   {
