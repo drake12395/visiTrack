@@ -23,7 +23,9 @@ const Meeting = ({ userInfo }) => {
             <ListGroup variant='flush'>
               <ListGroup.Item>Guest Name: {meeting.visitor}</ListGroup.Item>
               <ListGroup.Item>Host Name: {meeting.host}</ListGroup.Item>
-              <ListGroup.Item>Date: {meeting.meetDayTime}</ListGroup.Item>
+              <ListGroup.Item>
+                Date: {meeting.meetDayTime.substring(0, 10)}
+              </ListGroup.Item>
 
               <ListGroup.Item>Location: {meeting.meetingRoom}</ListGroup.Item>
             </ListGroup>

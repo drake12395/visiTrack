@@ -22,19 +22,19 @@ const WebcamCapture = ({ location }) => {
   // const meetingDetails = useSelector((state) => state.meetingDetails);
   // const { meeting } = meetingDetails;
 
-  const notifyHost = useSelector((state) => state.notifyHost);
-  const { success: successNotify } = notifyHost;
+  // const notifyHost = useSelector((state) => state.notifyHost);
+  // const { success: successNotify } = notifyHost;
 
   // if the url query string exists, split
   // const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
-    if (successNotify) {
-      dispatch({ MEETING_NOTIFY_RESET });
-    }
+    // if (successNotify) {
+    //   dispatch({ MEETING_NOTIFY_RESET });
+    // }
 
     dispatch(listMeetings());
-  }, [dispatch, successNotify]);
+  }, [dispatch]);
 
   // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
@@ -68,6 +68,7 @@ const WebcamCapture = ({ location }) => {
 
   return (
     <>
+      {!userInfo && <Redirect to='/login' />}
       {userInfo && userInfo.isHost && <Redirect to='/hostmeetings' />}
       {!toggle ? <WelcomeText /> : <PrintInstructions />}
 
@@ -118,7 +119,7 @@ const WebcamCapture = ({ location }) => {
                   />
                 </div>
               ) : (
-                <Image variant='top' src={imgSrc} />
+                <Image className='placeHolder ' variant='top' src={imgSrc} />
               )}
             </Col>
           </Row>
