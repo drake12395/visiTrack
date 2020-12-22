@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Table, Button, Col, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   listMeetings,
@@ -9,9 +10,12 @@ import {
 } from '../actions/meetingActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import SearchBox from '../components/SearchBox';
 import { MEETING_CREATE_RESET } from '../constants/meetingConstants';
 
-const HostMeetings = ({ history }) => {
+const HostMeetings = ({ history, match }) => {
+  const keyword = match.params.keyword;
+
   const dispatch = useDispatch();
 
   const meetingList = useSelector((state) => state.meetingList);
@@ -45,10 +49,11 @@ const HostMeetings = ({ history }) => {
     if (successCreate) {
       history.push(`/host/meeting/${createdMeeting._id}/edit`);
     } else {
-      dispatch(listMeetings());
+      dispatch(listMeetings(keyword));
     }
   }, [
     dispatch,
+    keyword,
     history,
     userInfo,
     successCreate,
@@ -72,6 +77,9 @@ const HostMeetings = ({ history }) => {
       <Row className='align-items-center'>
         <Col>
           <h1>Meetings</h1>
+        </Col>
+        <Col>
+          <Route render={({ history }) => <SearchBox history={history} />} />
         </Col>
         <Col className='text-right'>
           <Button className='my-3' onClick={createMeetingHandler}>

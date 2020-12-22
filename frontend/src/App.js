@@ -25,6 +25,7 @@ const App = () => {
             <Route path='/register' component={RegisterScreen} />
 
             <Route path='/hostmeetings' component={HostMeetings} />
+            <Route path='/search/:keyword' component={HostMeetings} />
             <Route
               path='/host/meeting/:id/edit'
               component={MeetingEditScreen}

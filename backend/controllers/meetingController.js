@@ -4,7 +4,16 @@ import Meeting from '../models/meetingModel.js';
 // request all meetings
 // GET /api/meetings
 const getMeetings = asyncHandler(async (req, res) => {
-  const meetings = await Meeting.find({});
+  const keyword = req.query.keyword
+    ? {
+        visitor: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
+
+  const meetings = await Meeting.find({ ...keyword });
   res.json(meetings);
 });
 

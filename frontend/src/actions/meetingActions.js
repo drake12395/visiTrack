@@ -28,12 +28,12 @@ import { logout } from './userActions';
 // action creator
 // async request handled by thunk
 // dispatch actions to the reducer
-export const listMeetings = () => async (dispatch) => {
+export const listMeetings = (keyword = '') => async (dispatch) => {
   try {
     // calls meetinglistrequest in reducer (switch)
     dispatch({ type: MEETING_LIST_REQUEST });
     // get data
-    const { data } = await axios.get('/api/meetings');
+    const { data } = await axios.get(`/api/meetings?keyword=${keyword}`);
     // if above line works, dispatch success
     dispatch({
       type: MEETING_LIST_SUCCESS,
