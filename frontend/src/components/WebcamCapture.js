@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Webcam from 'react-webcam';
 import PassPreviewScreen from '../screens/PassPreviewScreen';
 import { listMeetings } from '../actions/meetingActions';
+import { logout } from '../actions/userActions';
 
 import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
 import { MEETING_NOTIFY_RESET } from '../constants/meetingConstants';
@@ -62,6 +63,10 @@ const WebcamCapture = ({ location }) => {
     setToggle(true);
   };
 
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   // const notifyHostHandler = () => {
   //   dispatch(meetingNotification(meeting));
   // };
@@ -71,6 +76,21 @@ const WebcamCapture = ({ location }) => {
       {!userInfo && <Redirect to='/login' />}
       {userInfo && userInfo.isHost && <Redirect to='/hostmeetings' />}
       {!toggle ? <WelcomeText /> : <PrintInstructions />}
+
+      {toggle && (
+        <div className='d-flex justify-content-center'>
+          <Button type='button' onClick={handleSubmit} className='m-3'>
+            Go Back
+          </Button>
+
+          <Button type='button' onClick={() => window.print()} className='m-3'>
+            Print
+          </Button>
+          <Button type='button' onClick={logoutHandler} className='m-3'>
+            Logout
+          </Button>
+        </div>
+      )}
 
       {!toggle ? (
         <Container fluid>
@@ -89,6 +109,7 @@ const WebcamCapture = ({ location }) => {
                 Capture photo
               </Button>
               <Form className='guestSignIn' onSubmit={handleSubmit}>
+                <Form.Label>Fun Fact</Form.Label>
                 <Form.Group controlId='funFact'>
                   <Form.Control
                     type='text'
@@ -132,22 +153,6 @@ const WebcamCapture = ({ location }) => {
             toggle={toggle}
           ></PassPreviewScreen>
         </div>
-      )}
-      {toggle ? (
-        <div className='d-flex justify-content-center'>
-          <Button type='button' onClick={handleSubmit} className='m-3'>
-            Go Back
-          </Button>
-
-          <Button type='button' onClick={() => window.print()} className='m-3'>
-            Print
-          </Button>
-          {/* <Button type='button' onClick={notifyHostHandler} className='m-3'>
-            notify host
-          </Button> */}
-        </div>
-      ) : (
-        ''
       )}
     </>
   );

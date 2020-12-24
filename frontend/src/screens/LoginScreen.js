@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { login } from '../actions/userActions';
+import DemoModeInstructions from '../components/DemoModeInstructions';
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
@@ -70,6 +71,7 @@ const LoginScreen = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      <DemoModeInstructions />
     </FormContainer>
   );
 };

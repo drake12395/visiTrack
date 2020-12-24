@@ -27,7 +27,10 @@ const Meeting = ({ userInfo }) => {
                 Date: {meeting.meetDayTime.substring(0, 10)}
               </ListGroup.Item>
 
-              <ListGroup.Item>Location: {meeting.meetingRoom}</ListGroup.Item>
+              <ListGroup.Item>Location: {meeting.meetingTime}</ListGroup.Item>
+              <ListGroup.Item>
+                Description: {meeting.description}
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         ) : (
