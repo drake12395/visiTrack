@@ -9,9 +9,8 @@ import { listMeetings } from '../actions/meetingActions';
 import { logout } from '../actions/userActions';
 
 import { Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
-import { MEETING_NOTIFY_RESET } from '../constants/meetingConstants';
 
-const WebcamCapture = ({ location }) => {
+const WebcamCapture = () => {
   const dispatch = useDispatch();
 
   const [funFact, setFunFact] = useState('');
@@ -20,24 +19,10 @@ const WebcamCapture = ({ location }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // const meetingDetails = useSelector((state) => state.meetingDetails);
-  // const { meeting } = meetingDetails;
-
-  // const notifyHost = useSelector((state) => state.notifyHost);
-  // const { success: successNotify } = notifyHost;
-
-  // if the url query string exists, split
-  // const redirect = location.search ? location.search.split('=')[1] : '/';
-
   useEffect(() => {
-    // if (successNotify) {
-    //   dispatch({ MEETING_NOTIFY_RESET });
-    // }
-
     dispatch(listMeetings());
   }, [dispatch]);
 
-  // TODO --- get timestamp of when host checks in and display it in host meeting detail log.
   const videoConstraints = {
     width: 1280,
     height: 720,
@@ -66,10 +51,6 @@ const WebcamCapture = ({ location }) => {
   const logoutHandler = () => {
     dispatch(logout());
   };
-
-  // const notifyHostHandler = () => {
-  //   dispatch(meetingNotification(meeting));
-  // };
 
   return (
     <>

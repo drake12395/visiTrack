@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
+// used to populate and dump data from db in dev mode
 import dotenv from 'dotenv';
-import colors from 'colors';
 import users from './data/users.js';
 import meetings from './data/meetings.js';
 import User from './models/userModel.js';

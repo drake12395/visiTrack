@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-// rvw user schema make sure it matches, the chen meeting (problme is probably in meeting)
+
 const users = [
   {
     name: 'Host User',

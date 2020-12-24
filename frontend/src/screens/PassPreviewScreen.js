@@ -4,11 +4,11 @@ import { Container, Col, Row } from 'react-bootstrap';
 import moment from 'moment';
 import Meeting from './Meeting';
 
-const PassPreviewScreen = ({ visitor, funFact, imgSrc }) => {
+const PassPreviewScreen = ({ funFact, imgSrc }) => {
   const expiresOn = moment().format('LL');
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
 
   return (
     <>

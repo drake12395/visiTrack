@@ -15,27 +15,26 @@ const Meeting = ({ userInfo }) => {
 
   return (
     <>
-      {meetings.map((meeting) =>
-        meeting.visitor.toLowerCase().trim() ===
-        userInfo.name.toLowerCase().trim() ? (
-          <Card style={{ width: '18rem' }} key={meeting._id}>
-            <Card.Header>Meeting Details</Card.Header>
-            <ListGroup variant='flush'>
-              <ListGroup.Item>Guest Name: {meeting.visitor}</ListGroup.Item>
-              <ListGroup.Item>Host Name: {meeting.host}</ListGroup.Item>
-              <ListGroup.Item>
-                Date: {meeting.meetDayTime.substring(0, 10)}
-              </ListGroup.Item>
+      {meetings.map(
+        (meeting) =>
+          meeting.visitor.toLowerCase().trim() ===
+            userInfo.name.toLowerCase().trim() && (
+            <Card style={{ width: '18rem' }} key={meeting._id}>
+              <Card.Header>Meeting Details</Card.Header>
+              <ListGroup variant='flush'>
+                <ListGroup.Item>Guest Name: {meeting.visitor}</ListGroup.Item>
+                <ListGroup.Item>Host Name: {meeting.host}</ListGroup.Item>
+                <ListGroup.Item>
+                  Date: {meeting.meetDayTime.substring(0, 10)}
+                </ListGroup.Item>
 
-              <ListGroup.Item>Location: {meeting.meetingTime}</ListGroup.Item>
-              <ListGroup.Item>
-                Description: {meeting.description}
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
-        ) : (
-          ''
-        )
+                <ListGroup.Item>Location: {meeting.meetingTime}</ListGroup.Item>
+                <ListGroup.Item>
+                  Description: {meeting.description}
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          )
       )}
     </>
   );

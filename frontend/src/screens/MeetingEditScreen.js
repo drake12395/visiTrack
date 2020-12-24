@@ -15,7 +15,7 @@ const MeetingEditScreen = ({ match, history }) => {
   const [host, setHostName] = useState('');
   const [meetDayTime, setDayTime] = useState('');
   const [meetingTime, setMeetingTime] = useState('');
-  // const [meetingRoom, setMeetingRoom] = useState('');
+
   const [description, setDescription] = useState('');
 
   const dispatch = useDispatch();

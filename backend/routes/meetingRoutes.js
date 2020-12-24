@@ -1,5 +1,4 @@
 // routes point to controllers
-
 import express from 'express';
 
 const router = express.Router();
@@ -9,15 +8,13 @@ import {
   createMeeting,
   deleteMeeting,
   updateMeeting,
-  notifyHost,
 } from '../controllers/meetingController.js';
 import { protect, host } from '../middleware/authMiddleware.js';
 
 router.route('/').get(getMeetings).post(protect, host, createMeeting);
 router.route('/hostmeetings').get(protect, host, getMeetings);
-router.route('/:id/notify').put(notifyHost);
+router.route('/:id/notify');
 
-// router.put(protect, host, updateMeeting);
 router
   .route('/:id')
   .get(getMeetingById)

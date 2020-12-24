@@ -16,10 +16,6 @@ import {
   MEETING_CREATE_REQUEST,
   MEETING_CREATE_RESET,
   MEETING_CREATE_SUCCESS,
-  MEETING_NOTIFY_FAIL,
-  MEETING_NOTIFY_REQUEST,
-  MEETING_NOTIFY_SUCCESS,
-  MEETING_NOTIFY_RESET,
 } from '../constants/meetingConstants';
 // use switch to evaluate type (request, success, failure)
 // request - return part of the state (loading, and empty meeting array)
@@ -94,18 +90,3 @@ export const meetingCreateReducer = (state = {}, action) => {
       return state;
   }
 };
-
-// export const notifyHostReducer = (state = {}, action) => {
-//   switch (action.type) {
-//     case MEETING_NOTIFY_REQUEST:
-//       return { loading: true };
-//     case MEETING_NOTIFY_SUCCESS:
-//       return { loading: false, success: true };
-//     case MEETING_NOTIFY_FAIL:
-//       return { loading: false, error: action.payload };
-//     case MEETING_NOTIFY_RESET:
-//       return {};
-//     default:
-//       return state;
-//   }
-// };

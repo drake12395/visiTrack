@@ -96,28 +96,10 @@ const deleteMeeting = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    notify host
-// @route   GET /api/meetings/:id/notify
-// @access  Private/visitor
-const notifyHost = asyncHandler(async (req, res) => {
-  const meeting = await Meeting.findById(req.params.id);
-
-  if (meeting) {
-    meeting.isReady = true;
-
-    const updatedMeeting = await meeting.save();
-    res.json(updatedMeeting);
-  } else {
-    res.status(404);
-    throw new Error('Meeting not found');
-  }
-});
-
 export {
   getMeetings,
   getMeetingById,
   createMeeting,
   deleteMeeting,
   updateMeeting,
-  notifyHost,
 };

@@ -15,10 +15,6 @@ import {
   MEETING_CREATE_SUCCESS,
   MEETING_CREATE_FAIL,
   MEETING_CREATE_REQUEST,
-  MEETING_NOTIFY_FAIL,
-  MEETING_NOTIFY_REQUEST,
-  MEETING_NOTIFY_RESET,
-  MEETING_NOTIFY_SUCCESS,
 } from '../constants/meetingConstants';
 import { logout } from './userActions';
 
@@ -30,7 +26,7 @@ import { logout } from './userActions';
 // dispatch actions to the reducer
 export const listMeetings = (keyword = '') => async (dispatch) => {
   try {
-    // calls meetinglistrequest in reducer (switch)
+    // calls meetinglistrequest in reducer
     dispatch({ type: MEETING_LIST_REQUEST });
     // get data
     const { data } = await axios.get(`/api/meetings?keyword=${keyword}`);
@@ -146,7 +142,6 @@ export const createMeeting = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    // PICK UP HERE (BELOW) - looks like route is not found (hitting  404)
 
     const { data } = await axios.post(`/api/meetings`, {}, config);
 
@@ -189,28 +184,3 @@ export const listMeetingDetails = (id) => async (dispatch) => {
     });
   }
 };
-
-// export const meetingNotification = (meeting) => async (dispatch, getState) => {
-//   try {
-//     dispatch({ type: MEETING_NOTIFY_REQUEST });
-
-//     // const {
-//     //   userLogin: { userInfo },
-//     // } = getState();
-
-//     const { data } = await axios.put(`/api/meetings/${meeting._id}/notify`, {});
-
-//     dispatch({
-//       type: MEETING_NOTIFY_SUCCESS,
-//       payload: data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: MEETING_NOTIFY_FAIL,
-//       payload:
-//         error.response && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,
-//     });
-//   }
-// };

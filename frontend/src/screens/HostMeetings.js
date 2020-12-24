@@ -61,7 +61,6 @@ const HostMeetings = ({ history, match }) => {
     createdMeeting,
   ]);
 
-  // TODO - create deleteMeeting to be dispatched
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
       dispatch(deleteMeeting(id));
@@ -126,11 +125,6 @@ const HostMeetings = ({ history, match }) => {
                     >
                       <i className='fas fa-trash'></i>
                     </Button>
-                    {/* {meeting.isReady && (
-                      <Message variant='success'>
-                        your visitor has arrived
-                      </Message>
-                    )} */}
                   </td>
                 </tr>
               )

@@ -26,7 +26,7 @@ const LoginScreen = ({ location, history }) => {
     }
   }, [history, userInfo, redirect]);
 
-  // prevent default form behavior and dispatch
+  // prevent default form behavior and dispatch login
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
