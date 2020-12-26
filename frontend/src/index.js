@@ -7,6 +7,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// All components are wrapped with Provider to allow store access.
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

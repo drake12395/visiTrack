@@ -8,6 +8,8 @@ import FormContainer from '../components/FormContainer';
 import { listMeetingDetails, updateMeeting } from '../actions/meetingActions';
 import { MEETING_UPDATE_RESET } from '../constants/meetingConstants';
 
+// Allows credentialed host to edit meetings.
+
 const MeetingEditScreen = ({ match, history }) => {
   const meetingId = match.params.id;
 

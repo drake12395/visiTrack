@@ -7,6 +7,9 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { register } from '../actions/userActions';
 
+// Standard registration form for new users.
+// All users are entered and visitors and may be updated to host by another host.
+
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

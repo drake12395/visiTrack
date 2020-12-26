@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WebcamCapture from '../components/WebcamCapture';
-import { Button } from 'react-bootstrap';
-import Meeting from './Meeting';
-import PassPreviewScreen from './PassPreviewScreen';
+
+// Displays the WebcamCapture component
 
 const VisitorSignInScreen = () => {
   return (

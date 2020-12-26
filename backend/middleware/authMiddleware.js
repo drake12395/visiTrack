@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 
+// checks for auth and ensures its format is correct
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
@@ -30,6 +31,7 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
+// checks for host credentials
 const host = (req, res, next) => {
   if (req.user && req.user.isHost) {
     next();
@@ -39,6 +41,7 @@ const host = (req, res, next) => {
   }
 };
 
+// checks for visitor credentials
 const visitor = (req, res, next) => {
   if (req.user && !req.user.isHost) {
     next();

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, ListGroup } from 'react-bootstrap';
 import { listMeetings } from '../actions/meetingActions';
 
+// Returns the correct meeting based logged in name and visitor name from database.
+
 const Meeting = ({ userInfo }) => {
   const dispatch = useDispatch();
 

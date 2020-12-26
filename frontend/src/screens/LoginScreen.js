@@ -8,6 +8,9 @@ import FormContainer from '../components/FormContainer';
 import { login } from '../actions/userActions';
 import DemoModeInstructions from '../components/DemoModeInstructions';
 
+// Provides a form for users to enter credentials and gain access to the system.
+// Once submitted, the appropraite routing features will return the correct view per user.
+
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

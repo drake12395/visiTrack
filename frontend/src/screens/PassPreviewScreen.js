@@ -4,6 +4,8 @@ import { Container, Col, Row } from 'react-bootstrap';
 import moment from 'moment';
 import Meeting from './Meeting';
 
+// Creates a visitor pass that shows the picture and fun fact selected by the user
+
 const PassPreviewScreen = ({ funFact, imgSrc }) => {
   const expiresOn = moment().format('LL');
 

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// the object below defines the schema for each meeting stored in MongoDB.
+
 const meetingSchema = mongoose.Schema(
   {
     user: {

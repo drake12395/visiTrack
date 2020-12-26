@@ -8,6 +8,12 @@ import {
   USER_REGISTER_SUCCESS,
 } from '../constants/userConstants';
 
+// use switch to evaluate type (request, success, failure)
+// request - return part of the state (loading, and empty array)
+// success - loading is done and array now has a payload
+// fail - loading is done and payload exists
+// default - just return initial state from args
+
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
