@@ -13,7 +13,9 @@ import Message from '../components/Message';
 import SearchBox from '../components/SearchBox';
 import { MEETING_CREATE_RESET } from '../constants/meetingConstants';
 
-// All meetings for the logged in host are displayed.  Meetings can be created, edited and deleted.  Meetings are fetched and displayed to visitors when he/she logs in to attend the meeting.
+// All meetings for the logged in host are displayed.
+// Meetings can be created, edited and deleted.
+// Meetings are fetched and displayed to visitors when he/she logs in to attend the meeting.
 
 const HostMeetings = ({ history, match }) => {
   const keyword = match.params.keyword;

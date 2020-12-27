@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
@@ -16,12 +17,25 @@ const app = express();
 app.use(express.json());
 
 //routes
-app.get('/', (req, res) => {
-  res.send('API is running....');
-});
 
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/users', userRoutes);
+
+const __dirname = path.resolve();
+
+// when in production, set frontend/build to a static folder
+// any route that isn't our api, point to index.html thats in the static folder
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....');
+  });
+}
 
 // error middleware - error displayed for invalid url
 app.use(notFound);
