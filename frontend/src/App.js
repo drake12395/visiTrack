@@ -9,6 +9,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HostMeetings from './screens/HostMeetings';
 import MeetingEditScreen from './screens/MeetingEditScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route exact path='/' component={WebcamCapture} />
             <Route path='/meeting/:id' component={Meeting} />
             <Route path='/register' component={RegisterScreen} />
+            <Route path='/profile' component={ProfileScreen} />
             <Route path='/hostmeetings' component={HostMeetings} />
             <Route path='/search/:keyword' component={HostMeetings} />
             <Route
