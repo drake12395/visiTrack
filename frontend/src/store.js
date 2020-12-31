@@ -19,6 +19,7 @@ const reducer = combineReducers({
   meetingCreate: meetingCreateReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
