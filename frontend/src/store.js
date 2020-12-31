@@ -9,7 +9,11 @@ import {
   meetingtDetailsReducer,
   meetingCreateReducer,
 } from './reducers/meetingReducers';
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+} from './reducers/userReducers';
 
 const reducer = combineReducers({
   meetingList: meetingListReducer,
