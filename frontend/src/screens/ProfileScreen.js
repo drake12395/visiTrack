@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
+import { LinkContainer } from 'react-router-bootstrap';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
@@ -46,12 +47,13 @@ const ProfileScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password.length > 0 && password.length < 6) {
+    if (password.length >= 0 && password.length < 6) {
       setMessage('Password needs to contain at least six characters');
     } else if (password !== confirmPassword) {
       setMessage('Passwords do not match');
     } else {
       setMessageSuccess('Password updated');
+      setMessage(null);
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
@@ -59,6 +61,7 @@ const ProfileScreen = ({ location, history }) => {
   return (
     <FormContainer>
       <h2>User Profile</h2>
+
       {message && <Message variant='danger'>{message}</Message>}
       {messageSuccess && <Message variant='success'>{messageSuccess}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
@@ -105,7 +108,15 @@ const ProfileScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <LinkContainer to='/'>
+          <Button variant='primary' className='btn-sm'>
+            Go Back
+          </Button>
+        </LinkContainer>
+        {/* <Button to='/' variant='primary'>
+          Go Back
+        </Button> */}
+        <Button className='float-right' type='submit' variant='warning'>
           Update
         </Button>
       </Form>
