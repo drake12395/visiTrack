@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -17,6 +17,7 @@ const ProfileScreen = ({ location, history }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
+  const [messageSuccess, setMessageSuccess] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -45,9 +46,12 @@ const ProfileScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword && password.length < 6) {
+    if (password.length > 0 && password.length < 6) {
+      setMessage('Password needs to contain at least six characters');
+    } else if (password !== confirmPassword) {
       setMessage('Passwords do not match');
     } else {
+      setMessageSuccess('Password updated');
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
@@ -56,9 +60,10 @@ const ProfileScreen = ({ location, history }) => {
     <FormContainer>
       <h2>User Profile</h2>
       {message && <Message variant='danger'>{message}</Message>}
+      {messageSuccess && <Message variant='success'>{messageSuccess}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
-      {success && <Message variant='success'>Profile Updated</Message>}
-      {loading && <Loader />}
+      {/* {success && <Message variant='success'>Profile Updated</Message>} */}
+      {/* {loading && <Loader />} */}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
