@@ -1,3 +1,18 @@
+/****************************************************************
+ * File name: meetingReducers.js
+ * **************************************************************
+ * File purpose:
+ * This file contains meeting reducers that take current state
+ * and an action and return a new state.
+ * **************************************************************
+ * use switch to evaluate type (request, success, failure).
+ * request - return part of the state (loading, and empty meeting
+ * array).
+ * success - loading is done and meeting array now has a payload.
+ * fail - loading is done and send an error in the payload.
+ * default - just return initial state from args.
+ ***************************************************************/
+
 import {
   MEETING_LIST_REQUEST,
   MEETING_LIST_SUCCESS,
@@ -17,11 +32,7 @@ import {
   MEETING_CREATE_RESET,
   MEETING_CREATE_SUCCESS,
 } from '../constants/meetingConstants';
-// use switch to evaluate type (request, success, failure)
-// request - return part of the state (loading, and empty meeting array)
-// success - loading is done and meeting array now has a payload
-// fail - loading is done and send an error in the payload
-// default - just return initial state from args
+
 export const meetingListReducer = (state = { meetings: [] }, action) => {
   switch (action.type) {
     case MEETING_LIST_REQUEST:

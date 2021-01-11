@@ -1,3 +1,18 @@
+/****************************************************************
+ * File name: userReducers.js
+ * **************************************************************
+ * File purpose:
+ * This file contains user reducers that take current state
+ * and an action and return a new state.
+ * **************************************************************
+ * use switch to evaluate type (request, success, failure).
+ * request - return part of the state (loading, and empty user
+ * array).
+ * success - loading is done and user array now has a payload.
+ * fail - loading is done and send an error in the payload.
+ * default - just return initial state from args.
+ ***************************************************************/
+
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -14,12 +29,6 @@ import {
   USER_UPDATE_PROFILE_RESET,
   USER_UPDATE_PROFILE_SUCCESS,
 } from '../constants/userConstants';
-
-// use switch to evaluate type (request, success, failure)
-// request - return part of the state (loading, and empty array)
-// success - loading is done and array now has a payload
-// fail - loading is done and payload exists
-// default - just return initial state from args
 
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
