@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: userModel.js
+ * **************************************************************
+ * File purpose:
+ * This file defines the model for all users. Each field has
+ * has a type and a boolean requried value. Password matching is
+ * handled here by bcrypt
+ ***************************************************************/
+
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
@@ -40,7 +49,7 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
   }
-
+  // hash the password ten times for optimal security
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });

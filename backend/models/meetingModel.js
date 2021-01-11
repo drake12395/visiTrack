@@ -1,6 +1,14 @@
-import mongoose from 'mongoose';
+/****************************************************************
+ * File name: meetingModel.js
+ * **************************************************************
+ * File purpose:
+ * This file defines the model for all meetings. Each field has
+ * has a type and a boolean requried value. The user and host
+ * field both reference the User model.  Mongoosejs facilitates the
+ * object modeling.
+ ***************************************************************/
 
-// the object below defines the schema for each meeting stored in MongoDB.
+import mongoose from 'mongoose';
 
 const meetingSchema = mongoose.Schema(
   {

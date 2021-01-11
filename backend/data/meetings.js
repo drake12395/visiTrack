@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: meeting.js
+ * **************************************************************
+ * File purpose:
+ * This file describes some dummy meetings that are used to
+ * repopulate the database during testing.
+ ***************************************************************/
+
 const meetings = [
   {
     visitor: 'John Jones',
