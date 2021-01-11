@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: meetingConstants.js
+ * **************************************************************
+ * File purpose:
+ * This file contains constants for meetings that are used in
+ * the actions and reducers. They are defined here for the sake
+ * of consistency accross files.
+ ***************************************************************/
+
 export const MEETING_LIST_REQUEST = 'MEETING_LIST_REQUEST';
 export const MEETING_LIST_SUCCESS = 'MEETING_LIST_SUCCESS';
 export const MEETING_LIST_FAIL = 'MEETING_LIST_FAIL';
