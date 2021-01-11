@@ -1,3 +1,14 @@
+/****************************************************************
+ * File name: meetingRoutes.js
+ * **************************************************************
+ * File purpose:
+ * This file interacts with the logic layed out in the meeting
+ * controller. The meeting routes called here are responsible
+ * for handling client requests which include: getting an meeting
+ * by its ID, getting all meetings, creating a meeting, removing
+ * a meeting, and updating a meeting.
+ ***************************************************************/
+
 // routes point to controllers
 import express from 'express';
 

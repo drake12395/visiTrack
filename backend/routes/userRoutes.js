@@ -1,3 +1,14 @@
+/****************************************************************
+ * File name: userRoutes.js
+ * **************************************************************
+ * File purpose:
+ * This file interacts with the logic layed out in the user
+ * controller. The user routes called here are responsible
+ * for handling client requests which include: authenticating
+ * a user, getting a users profile, registering a user,
+ * and updating a users profile.
+ ***************************************************************/
+
 // routes point to controllers
 import express from 'express';
 const router = express.Router();
