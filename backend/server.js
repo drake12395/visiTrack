@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: seeder.js
+ * **************************************************************
+ * File purpose:
+ * This file is responsible for establishing a connection to
+ * serve data to the client. Variables are stored as environement
+ * variables and loaded via dotenv.
+ ***************************************************************/
+
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
@@ -11,13 +20,13 @@ dotenv.config();
 
 connectDB();
 
+// standard expressjs connection
 const app = express();
 
-//allows us to accept json data in the body
+// allows us to accept json data in the body
 app.use(express.json());
 
-//routes
-
+// routes
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/users', userRoutes);
 
@@ -40,9 +49,11 @@ if (process.env.NODE_ENV === 'production') {
 // error middleware - error displayed for invalid url
 app.use(notFound);
 
-//error middleware - if status code is 200, make it a 500 and respond with stack trace if not in production
+// error middleware - if status code is 200, make it a 500 and
+// respond with stack trace if not in production
 app.use(errorHandler);
 
+// connect to stored port in env file, or 5000 if that doesnt work
 const PORT = process.env.PORT || 5000;
 
 app.listen(

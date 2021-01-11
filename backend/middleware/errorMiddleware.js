@@ -5,7 +5,7 @@
  * This file contains two custom error handlers.
  ***************************************************************/
 
-// custom error handling for urls
+// error middleware - error displayed for invalid url
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found -- ${req.originalUrl}`);
   res.status(404);
@@ -13,6 +13,7 @@ const notFound = (req, res, next) => {
 };
 
 // custom error handling for production mode
+//error middleware - if status code is 200, make it a 500 and respond with stack trace if not in production
 const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
