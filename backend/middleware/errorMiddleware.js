@@ -1,3 +1,10 @@
+/****************************************************************
+ * File name: errorMiddleware.js
+ * **************************************************************
+ * File purpose:
+ * This file contains two custom error handlers.
+ ***************************************************************/
+
 // custom error handling for urls
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found -- ${req.originalUrl}`);

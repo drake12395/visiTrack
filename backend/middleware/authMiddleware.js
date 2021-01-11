@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: authMiddleware.js
+ * **************************************************************
+ * File purpose:
+ * This file uses JWT (jwt.io) to encode and decode protected
+ * users (hosts and visitors). These authorization features are
+ * used for restriced route access throughout the application.
+ ***************************************************************/
+
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
