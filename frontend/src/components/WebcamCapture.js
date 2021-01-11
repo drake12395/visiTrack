@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: WebcamCapture.js
+ * **************************************************************
+ * File purpose:
+ * This file serves as the landing page for visitors. Visitors
+ * can take a photo and view the meeting/instruction set forth
+ * by the company.
+ ***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import WelcomeText from './WelcomeText';
 import { Redirect } from 'react-router-dom';

@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: PrintInstructions.js
+ * **************************************************************
+ * File purpose:
+ * This file houses the some printing instructions that were
+ * placed here to reduce bloat in the WebcamCapture file.
+ ***************************************************************/
+
 import React from 'react';
 
 const PrintInstructions = () => {

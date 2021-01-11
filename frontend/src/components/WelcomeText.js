@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: WelcomeText.js
+ * **************************************************************
+ * File purpose:
+ * This file contains text for a visitor that has signed in. This
+ * component is consumed by WebcamCapture.js.
+ ***************************************************************/
+
 import React from 'react';
 
 const WelcomeText = () => {

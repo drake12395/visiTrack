@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: DemoModeInstructions.js
+ * **************************************************************
+ * File purpose:
+ * This file houses text instructing users how to use the app
+ * in demo mode, this component is consumed in LoginScreen.js
+ ***************************************************************/
+
 import React from 'react';
 
 const DemoModeInstructions = () => {
