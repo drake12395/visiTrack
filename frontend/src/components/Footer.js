@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: Footer.js
+ * **************************************************************
+ * File purpose:
+ * This file houses the footer component that is seen at the
+ * bottom of each view throughout the application.
+ ***************************************************************/
+
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 

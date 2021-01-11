@@ -1,3 +1,13 @@
+/****************************************************************
+ * File name: Header.js
+ * **************************************************************
+ * File purpose:
+ * This file houses the Header component that is seen at the
+ * top of each view throughout the application (excluding login
+ * and registration). This navigation feature allows users to
+ * view his/her profile, logout, or navigate to the landing page.
+ ***************************************************************/
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
