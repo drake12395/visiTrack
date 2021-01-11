@@ -1,3 +1,16 @@
+/****************************************************************
+ * File name: seeder.js
+ * **************************************************************
+ * File purpose:
+ * This file is responsible for populating or removing all data
+ * from the database during development mode. This file does not
+ * interact with production mode. The two functions allow for
+ * a quick "reset" during testing instead of manually deleting
+ * and adding users. These features are called by their
+ * respective command in the global package.json file under
+ * "scripts".
+ ***************************************************************/
+
 // used to populate and dump data from db in dev mode
 import dotenv from 'dotenv';
 import users from './data/users.js';
