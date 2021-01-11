@@ -1,3 +1,14 @@
+/****************************************************************
+ * File name: userController.js
+ * **************************************************************
+ * File purpose:
+ * This file defines the functionality for all users. User
+ * routes point to functions in this file. Instead of having
+ * all the route functionality described in the routes folder,
+ * it is defined here and called in the route files.
+ *
+ ***************************************************************/
+
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';

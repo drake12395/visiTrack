@@ -1,3 +1,14 @@
+/****************************************************************
+ * File name: meetingController.js
+ * **************************************************************
+ * File purpose:
+ * This file defines the functionality for all meetings. Meeting
+ * routes point to functions in this file. Instead of having
+ * all the route functionality described in the routes folder,
+ * it is defined here and called in the route files.
+ *
+ ***************************************************************/
+
 import asyncHandler from 'express-async-handler';
 import Meeting from '../models/meetingModel.js';
 
