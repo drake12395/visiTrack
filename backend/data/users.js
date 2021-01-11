@@ -1,3 +1,11 @@
+/****************************************************************
+ * File name: user.js
+ * **************************************************************
+ * File purpose:
+ * This file describes some dummy users that are used to
+ * repopulate the database during testing.
+ ***************************************************************/
+
 import bcrypt from 'bcryptjs';
 
 const users = [
