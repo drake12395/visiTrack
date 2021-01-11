@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: meetingActions.js
+ * **************************************************************
+ * File purpose:
+ * This file contains objects that all have a type and payload.
+ * Each action creator describes an event that occured in the
+ * application.
+ ***************************************************************/
+
 import axios from 'axios';
 import {
   MEETING_LIST_REQUEST,
@@ -50,10 +59,11 @@ export const listMeetings = (keyword = '') => async (dispatch) => {
 
 export const deleteMeeting = (id) => async (dispatch, getState) => {
   try {
+    // calls meetingdeleterequest in reducer
     dispatch({
       type: MEETING_DELETE_REQUEST,
     });
-
+    // get data
     const {
       userLogin: { userInfo },
     } = getState();
@@ -63,13 +73,14 @@ export const deleteMeeting = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
+    // delete meeting based on id/token by way of axios
     await axios.delete(`/api/meetings/${id}`, config);
-
+    // let us know this was successful
     dispatch({
       type: MEETING_DELETE_SUCCESS,
     });
   } catch (error) {
+    // return error message if there is one
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -84,6 +95,7 @@ export const deleteMeeting = (id) => async (dispatch, getState) => {
   }
 };
 
+// follows same routine as above function (update instead of delete)
 export const updateMeeting = (meeting) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -127,6 +139,7 @@ export const updateMeeting = (meeting) => async (dispatch, getState) => {
   }
 };
 
+// follows same routine as previous functions
 export const createMeeting = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -164,6 +177,7 @@ export const createMeeting = () => async (dispatch, getState) => {
   }
 };
 
+// follows same routine as previous functions
 export const listMeetingDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: MEETING_DETAILS_REQUEST });

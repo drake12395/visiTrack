@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: userActions.js
+ * **************************************************************
+ * File purpose:
+ * This file contains objects that all have a type and payload.
+ * Each action creator describes an event that occured in the
+ * application.
+ ***************************************************************/
+
 import axios from 'axios';
 import {
   USER_DETAILS_FAIL,
