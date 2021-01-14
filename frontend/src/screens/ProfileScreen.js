@@ -1,12 +1,25 @@
+/****************************************************************
+ * File name: ProflieScreen.js
+ * **************************************************************
+ * File purpose:
+ * This file provides a view for a user to see/update user
+ * information.
+ * **************************************************************
+ * File features:
+ * Global state allows for the user to view login information.
+ * Any or all of the user information can be updated. Validation
+ * checks ensure user submits an acceptable password. Various
+ * messages provide confirmation that tasks were completed as
+ * intended.
+ ***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import { LinkContainer } from 'react-router-bootstrap';
-import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 
 // Standard registration form for new users.
@@ -23,7 +36,7 @@ const ProfileScreen = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
+  const { error, user } = userDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -65,8 +78,6 @@ const ProfileScreen = ({ location, history }) => {
       {message && <Message variant='danger'>{message}</Message>}
       {messageSuccess && <Message variant='success'>{messageSuccess}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
-      {/* {success && <Message variant='success'>Profile Updated</Message>} */}
-      {/* {loading && <Loader />} */}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -113,9 +124,6 @@ const ProfileScreen = ({ location, history }) => {
             Go Back
           </Button>
         </LinkContainer>
-        {/* <Button to='/' variant='primary'>
-          Go Back
-        </Button> */}
         <Button className='float-right' type='submit' variant='warning'>
           Update
         </Button>

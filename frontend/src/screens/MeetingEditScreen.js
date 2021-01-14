@@ -1,3 +1,16 @@
+/****************************************************************
+ * File name: MeetingEditScreen.js
+ * **************************************************************
+ * File purpose:
+ * This file allows for a host to update or create a meeting.
+ * **************************************************************
+ * File features:
+ * If a meeting is being updated, state is used to
+ * populate the fields with the existing meeting attributes. If
+ * a host is creating a new meeting, the fields will be empty and
+ * allow a host to submit a new entry to the database.
+ ***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';

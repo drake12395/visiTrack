@@ -1,3 +1,17 @@
+/****************************************************************
+ * File name: LoginScreen.js
+ * **************************************************************
+ * File purpose:
+ * Allow a registered user to login to the system.
+ * **************************************************************
+ * File Features:
+ * Email and password input fields allow a user to attempt a
+ * login. Errors are displayed for faulty login attempts. An
+ * option to register as a new user is included. Once credentials
+ * are verified, the user is directed to the appropriate home
+ * screen and global state is updated.
+ ***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';

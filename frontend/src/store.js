@@ -1,4 +1,11 @@
-// where all reducers and middleware are connected
+/****************************************************************
+ * File name: store.js
+ * **************************************************************
+ * File purpose:
+ * This file provides global state to the application.
+ * Acts as a connection hub for all reducers and middleware.
+ ***************************************************************/
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';

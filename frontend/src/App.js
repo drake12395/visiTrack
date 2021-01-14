@@ -1,3 +1,12 @@
+/****************************************************************
+ * File name: App.js
+ * **************************************************************
+ * File purpose:
+ * This file lies toward the root of the React hiearchy tree. It
+ * provides routes to all screens in the system (which contain
+ * all subcomponents). This file is consumed by index.js.
+ ***************************************************************/
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';

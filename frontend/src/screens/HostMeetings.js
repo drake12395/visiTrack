@@ -1,3 +1,20 @@
+/****************************************************************
+ * File name: HostMeetings.js
+ * **************************************************************
+ * File purpose:
+ * This file is responsible for displaying all meetings per user.
+ * **************************************************************
+ * File Features:
+ * This file renders a view that displays
+ * several other componenets. Global state is accessed and
+ * provides us with the information about the host that is
+ * logged in. This is the landing page for a host and is only
+ * accessible by hosts. A react-bootstrap table is populated
+ * with all meetings for the loggged in host. Options to search
+ * by visitor name, update, delete, and create a meeting are
+ * available.
+ ***************************************************************/
+
 import React, { useEffect } from 'react';
 import { Table, Button, Col, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';

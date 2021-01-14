@@ -1,3 +1,16 @@
+/****************************************************************
+ * File name: PassPreviewScreen.js
+ * **************************************************************
+ * File purpose:
+ * This file allows for a visitor to view her/his visitor pass
+ * and meeting once a desired photo of the visitor has been
+ * captured. This screen is consumed by WebcamCapture.js.
+ * **************************************************************
+ * File features:
+ * Global state allows for the Meeting component to match the
+ * correct meeting to be displayed.
+ ***************************************************************/
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Col, Row } from 'react-bootstrap';

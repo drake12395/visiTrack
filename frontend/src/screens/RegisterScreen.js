@@ -1,3 +1,17 @@
+/****************************************************************
+ * File name: RegisterScreen.js
+ * **************************************************************
+ * File purpose:
+ * This file provides a view for a user sign up and gain access
+ * to the system.
+ * **************************************************************
+ * File features:
+ * Validation checks prevent duplicate accounts. Verification
+ * checks ensure user submits acceptable password and email. A
+ * link to LoginScreen.js sits at the bottom of the form
+ * container.
+ ***************************************************************/
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
